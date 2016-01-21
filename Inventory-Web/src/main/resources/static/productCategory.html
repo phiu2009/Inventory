@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<title>Product Category</title>
+  <style type="text/css">
+   	[ng\:cloak], [ng-cloak], .ng-cloak {
+	  display: none !important;
+	}
+  </style>
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+</head>
+
+<body ng-app="productCategoryApp">
+  <div class="container">
+    <h1>Product Category</h1>
+    <div ng-controller="productCategoryController as prdCatCtrl" ng-cloak class="table-responsive">
+		<table class="table table-bordered table-striped" style="width=:100%">
+			<thead>
+			  <tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th></th>
+			  </tr>
+			</thead>
+			<tbody border="1">
+				<form ng-submit="prdCatCtrl.edit()" name="myForm">
+				<tr ng-repeat="cat in prdCatCtrl.categoryList">
+					<td>{{cat.id}}</td>
+					<td><div ng-hide="prdCatCtrl.editMode == cat.id">{{cat.name}}</div>
+						<div ng-show="prdCatCtrl.editMode == cat.id">
+							<input class="form-control" type="text" ng-model="cat.name" required ng-minlength="4" placeholder="Category Name"> 
+						</div>
+					</td>
+					<td><button class="btn btn-default" ng-click="prdCatCtrl.deleteCat(cat);">Delete</button>
+						<button class="btn btn-default" ng-hide="prdCatCtrl.editMode == cat.id" ng-click="prdCatCtrl.edit(cat);">Edit</button>
+						<button class="btn btn-default" ng-show="prdCatCtrl.editMode == cat.id" ng-click="prdCatCtrl.save(cat);">Save</button>
+					</td>
+				</tr>
+				</form>
+			</tbody>
+			<tfoot>
+				<form ng-submit="prdCatCtrl.submit()" name="myForm">
+				<tr>
+					<td><input class="form-control" type="number" ng-model="prdCatCtrl.newCategory.id" required placeholder="Category Id"></td>
+					<td><input class="form-control" type="text" ng-model="prdCatCtrl.newCategory.name" required ng-minlength="4" placeholder="Category Name"> </td>
+					<td><input class="btn btn-default" type="submit" value="Add" ng-disabled="myForm.$invalid"></td>
+				</tr>
+				</form>
+			</tfoot>
+		</table>
+		
+	    
+    </div>
+   
+ </div>
+
+    
+  <!-- ANGULARS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="js/productCategory.js"></script>
+</body>
+</html>
