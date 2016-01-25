@@ -1,6 +1,6 @@
-var app = angular.module('productCategoryApp', []);
+var app = angular.module('ProductCategoryApp', []);
 
-app.controller('productCategoryController', ['$http', function($http){
+app.controller('ProductCategoryController', ['$http', function($http){
 	var self = this;
 	self.categoryList = [];
 	self.newCategory = {};
